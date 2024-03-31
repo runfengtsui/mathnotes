@@ -1,0 +1,41 @@
+\section{同伦方法}
+\subsection{预备知识}
+\subsubsection{光滑映射}
+
+\begin{definition}
+如果映射 $f:D\subset\mathbb{R}^m\to\mathbb{R}^n$ 在定义域 $D$ 中每一点都具有 $r$ 阶连续偏导数， 则称 $f$ 为 $C^r$ 映射; 如果对任一个正整数 $r$, 映射 $f$ 是 $C^r$ 映射, 则称 $f$ 是光滑映射.
+\end{definition}
+
+\begin{enumerate}
+    \item 光滑映射在其定义域内每一点处都可微.
+    \item 如果 $f:X\to Y$, $g:Y\to Z$ 都是光滑映射, 则复合映射 $g\circ f:X\to Z$ 也是光滑的.
+    \item 任意集合上的恒同映射和常值映射都是光滑映射.
+    \item $\mathbb{R}^m$ 中的任意紧集上的连续映射都可由光滑映射任意逼近.
+    \begin{theorem}
+    设 $X\subset\mathbb{R}^m$ 是紧集, $f: X\to\mathbb{R}^n$ 是连续映射, 则对任意 $\varepsilon > 0$, 存在光滑映射 $g: X\to\mathbb{R}^n$, 使得对任意 $x\in X$, 成立
+    \begin{equation*}
+        \left\lVert f(x)-g(x)\right\rVert < \varepsilon.
+    \end{equation*}
+    \end{theorem}
+\end{enumerate}
+
+\subsubsection{正则值}
+
+\begin{definition}
+设 $f:D\subset\mathbb{R}^m\to\mathbb{R}^n$ 是光滑映射, 对 $D$ 中的某一点 $\boldsymbol{x}_0$, 如果 $f$ 在 $\boldsymbol{x}_0$ 处的 Jacobi 矩阵 $\dfrac{\partial f}{\partial x}\left(\boldsymbol{x}_0\right)$ 行满秩, 则称 $\boldsymbol{x}_0$ 是映射 $f$ 的正则点. 若 $\boldsymbol{x}_0$ 不是映射 $f$ 的正则点, 即映射 $f$ 在 $\boldsymbol{x}_0$ 点处的 Jacobi 矩阵行降秩, 则称 $\boldsymbol{x}_0$ 是映射 $f$ 的临界点.
+\end{definition}
+
+\begin{definition}
+设 $\boldsymbol{y}_0\in\mathbb{R}^n$, 如果所有 $\boldsymbol{x}_0\in f^{-1}\left(\boldsymbol{y}_0\right)$ 都是映射 $f$ 的正则点, 则称 $\boldsymbol{y}_0$ 为映射的正则值; 如果 $\boldsymbol{y}_0$ 不是映射的正则值, 亦即存在 $\boldsymbol{x}_0\in f^{-1}\left(\boldsymbol{y}_0\right)$ 使得 $\boldsymbol{x}_0$ 是 $f$ 的临界点, 则称 $\boldsymbol{y}_0$ 是映射 $f$ 的临界值. 特别地, 如果 $\boldsymbol{y}_0\notin f(D)=\left\lbrace f(\boldsymbol{x}): \boldsymbol{x}\in D\right\rbrace$, 即 $\boldsymbol{y}_0\in\mathbb{R}^n\backslash f(D)$, 则 $\boldsymbol{y}_0$ 是映射 $f$ 的正则值.
+\end{definition}
+
+临界点的像一定是临界值, 但正则点的项不一定是正则值. 只要 $f^{-1}\left(\boldsymbol{y}_0\right)$ 中有一个临界点, $\boldsymbol{y}_0$ 就是临界值, 同时 $f^{-1}\left(\boldsymbol{y}_0\right)$ 中可能有多个正则点.
+
+如果 $m=n$, 使得 Jacobi 行列式 $\dfrac{\partial f}{\partial \boldsymbol{x}}\left(\boldsymbol{x}\right)=0$ 的点 $\boldsymbol{x}$ 称为 $f$ 的临界点.
+
+\subsubsection{微分同胚}
+
+\begin{definition}
+设 $X$ 和 $Y$ 分别是两个欧式空间中的子集, 如果映射 $f:X\to Y$ 是双射(即一一对应), 且 $f$ 与 $f$ 的逆映射 $f^{-1}$ 都是光滑映射, 则称 $f$ 是 $X$ 到 $Y$ 的一个微分同胚. 如果这样的同胚存在, 则称 $X$ 与 $Y$ 是微分同胚的.
+\end{definition}
+
