@@ -94,8 +94,114 @@
   \item[Newton 同伦] \(H(x,t)=\);
 \end{description}
 
+\subsubsection{Householder 变换}
+
+\begin{definition}
+  对任意单位向量 \(\boldsymbol{u}\in\mathbb{R}^n\), 矩阵
+  \begin{equation*}
+    Q=I-2\boldsymbol{u}\boldsymbol{u}^\mathrm{T}
+  \end{equation*}
+  称为关于 \(\boldsymbol{u}\) 的 Householder 变换矩阵.
+\end{definition}
+
+Householder 变换的性质:
+
+\begin{itemize}
+  \item \(Q\boldsymbol{x}=\boldsymbol{x},\forall\boldsymbol{x}\in P\), 即超平面 \(P\) 中的任何向量不能反射到其他任何地方.
+  \item \(Q\boldsymbol{u}=-\boldsymbol{u}\).
+  \item Q 是一个正交矩阵, 向量经反射变换 \(Q\) 后不改变长度, \(\left\lVert Q\boldsymbol{x}\right\rVert_2=\left\lVert \boldsymbol{x}\right\rVert_2,\forall\boldsymbol{x}\in\mathbb{R}^n\).
+  \item \(Q^2=I\), 即 \(Q\) 是对合的, 从而 \(Q^\mathrm{T}=Q\).
+  \item Q 有一个 \(n-1\) 重特征值 \(1\) 和一个单重特征值 \(-1\), 从而有 \(\det Q=-1\).
+\end{itemize}
+
 \subsection{单个零点的同伦算法}
 
 \begin{theorem}[广义 Sard 定理, 参数化 Sard 定理]
   设 \(U\subset\mathbb{R}^m,V\subset\mathbb{R}^q\) 是开集, \(\phi:U\times V\to\mathbb{R}^p\) 是 \(C^r\) 映射, \(r\ge\max\lbrace 0,m-p\rbrace\). 若 \(0\in\mathbb{R}^p\) 是 \(\phi\) 的正则值, 则对几乎所有 \(a\in V\), \(0\) 是映射 \(\phi(\cdot,a):U\to\mathbb{R}^p\) 的正则值.
 \end{theorem}
+
+\subsection{基本微分方程}
+
+\begin{theorem}
+  设 \(\Omega\subset\mathbb{R}^n\) 是一有界开凸集, \(f\) 是映 \(\bar\Omega\) 到其自身上的连续映像, 则 \(f\) 在 \(\bar\Omega\) 中有不动点 \(\boldsymbol{x}^*\), 即 \(f \left(\boldsymbol{x}^*\right)=\boldsymbol{x}^*\). 如果进一步假定 \(f\in C^2(\Omega)\), 则对几乎每个 \(\boldsymbol{x}_0\in\Omega\), 存在一光滑的简单曲线
+  \begin{equation*}
+    \left\lbrace (x(s),t(s))\in\bar \Omega\times [0,1]: s\in[0,S)\right\rbrace,
+  \end{equation*}
+  这里 \(S\) 是一正实数或 \(+\infty\), 使得
+
+  (i) \((x(s),t(s))\in H^{-1}(0)\), 其中
+  \begin{equation*}
+    H(\boldsymbol{x},t)=\boldsymbol{x}-((1-t)\boldsymbol{x}_0+tf(\boldsymbol{x})),
+  \end{equation*}
+  且 \((x(0),t(0))=(\boldsymbol{x}_0,0)\);
+
+  (ii) \(\lim\limits_{s\to S} t(s)=1\), 因而 \(\lim\limits_{s\to S} (f(x(s))-x(s))=0\);
+
+  (iii) \((x(s),t(s))\) 满足代数微分方程初值问题:
+  \begin{equation}
+    \begin{cases}
+      H_x\dfrac{\mathrm{d} \boldsymbol{x}}{\mathrm{d} s}+H_t \dfrac{\mathrm{d} t}{\mathrm{d} s}=0, \\
+      \left\lVert \dfrac{\mathrm{d} \boldsymbol{x}}{\mathrm{d} s}\right\rVert_2^2+\left(\dfrac{\mathrm{d} t}{\mathrm{d} s}\right)^2=1, \\
+      x(0)=\boldsymbol{x}_0, \\
+      t(0)=0.
+    \end{cases}
+    \label{eq:homotopy_basic_differential_equation}
+  \end{equation}
+\end{theorem}
+
+该定理的第一部分是\textbf{Brouwer 不动点定理}, 即:
+\begin{theorem}
+  设 \(\Omega\) 为 \(\mathrm{R}^n\) 中的有界闭凸集, 映像 \(F:\Omega\to \Omega\) 连续. 则 \(F\) 在 \(\Omega\) 中必有不动点, 即必有 \(\boldsymbol{x}^*\in \Omega\), 使得 \(F \left(\boldsymbol{x}^*\right)=\boldsymbol{x}^*\).
+\end{theorem}
+
+后半部分可以看成较弱的 Brouwer 不动点定理的构造型证明. 附加假设 \(f\in C^2(\Omega)\) 较弱是因为实际应用中非光滑算子并不多.
+
+任何求解初值问题 \eqref{eq:homotopy_basic_differential_equation} 的可靠方法都可以用来求解不动点问题 \(\boldsymbol{x}=f(\boldsymbol{x})\). 同伦延拓法的一个较重要的分支实际上是为了求解 \eqref{eq:homotopy_basic_differential_equation} 而设计的算法.
+
+微分方程 \eqref{eq:homotopy_basic_differential_equation} 确定了 \(\left(\dfrac{\mathrm{d} \boldsymbol{x}}{\mathrm{d} s},\dfrac{\mathrm{d} t}{\mathrm{d} s}\right)\) 的两个解向量集(根据其方向相反而区分), 但在计算上是麻烦的. 下述定理解决了这一麻烦:
+
+\begin{theorem}[基本微分方程]
+  设 \(H:\bar \Omega\times[0,1]\to\mathbb{R}^n\) 连续可微, \(\Omega\subset\mathbb{R}^n\) 为开集. 假定
+
+  (i) \(\boldsymbol{0}\) 是 \(H\) 的正则值;
+
+  (ii) \(H(\boldsymbol{x}_0,0)=\boldsymbol{0}\) 且 \(\boldsymbol{x}_0\in \Omega\) 是 \(H(\cdot,0)\) 的一个正则点;
+
+  (iii) \(\left\lbrace (\boldsymbol{x}(s),t(s))\in\bar \Omega\times[0,1]: s\in[0,S)\right\rbrace\subset H^{-1}(\boldsymbol{0})\) 是以弧长为参数的同伦道路, 沐足初始条件 \((\boldsymbol{x}(0),t(0))=(\boldsymbol{x}_0,0)\).
+
+  则同伦道路 \((\boldsymbol{x}(s),t(s))\) 由以下微分方程初值问题所确定:
+
+  \begin{equation*}
+    \begin{cases}
+      \dfrac{\mathrm{d} x_i}{\mathrm{d} s}=(-1)^iC(\boldsymbol{x},t)\cdot\det(\mathrm{DH}_{-i}(\boldsymbol{x},t)), & i=1,2,\cdots,n, \\
+      \dfrac{\mathrm{d} t}{\mathrm{d} s}=(-1)^{n+1}C(\boldsymbol{x},t)\cdot\det(H_{\boldsymbol{x}}(\boldsymbol{x},t)), \\
+      (\boldsymbol{x}(0),t(0))=(\boldsymbol{x}_0,0),
+    \end{cases}
+  \end{equation*}
+  这里
+  \begin{equation*}
+    C(\boldsymbol{x},t)=\frac{(-1)^{n+1}\mathrm{sgn}(\det(H_{\boldsymbol{x}}(\boldsymbol{x}_0,0)))}{\sqrt{\sum\limits_{i=1}^{n+1} \left(\det(\mathrm{DH}_{-i})\right)^2}}
+  \end{equation*}
+  其中 \(\mathrm{sgn}\) 为符号函数.
+\end{theorem}
+
+\subsection{路径跟踪算法}
+
+\begin{enumerate}
+  \item \textbf{初始化步}. 确定以下三个量:
+    \begin{itemize}
+      \item 初始点 \((\boldsymbol{x},t)_0=(\boldsymbol{x}_0,0)\);
+      \item 初始步长 \(\delta\);
+      \item 容许误差 \(\varepsilon\).
+    \end{itemize}
+  \item \textbf{预估步}. 计算 \((\boldsymbol{x},t)_0\) 处的切向量 \(\left(\dfrac{\mathrm{d} \boldsymbol{x}}{\mathrm{d} s},\dfrac{\mathrm{d} t}{\mathrm{d} s}\right)\), 并且用 Euler 法计算一步得
+    \begin{equation*}
+      (\boldsymbol{x},t)_1=(\boldsymbol{x},t)_0+\delta \left(\frac{\mathrm{d} \boldsymbol{x}}{\mathrm{d} s},\frac{\mathrm{d} t}{\mathrm{d} s}\right).
+    \end{equation*}
+    如果 \((\boldsymbol{x},t)_1\) 中的 \(t\) 分量大于 \(1\), 则调整步长 \(\delta\) 使预估在超平面 \(t=1\) 上.
+  \item \textbf{校正步}. 以 \((\boldsymbol{x},t)_1\) 为初值, 用迭代法产生一个序列 \(\left\lbrace(\boldsymbol{x},t)_i\right\rbrace_{i=1}^k\), 使 \((\boldsymbol{x},t)_*=(\boldsymbol{x},t)_k\) 为 \(H^{-1}(\boldsymbol{0})\) 中点的近似且其误差小于 \(\varepsilon\). 如果迭代法不收敛, 则缩小步长转回预估步.
+  \item \textbf{调换步}. 根据某判别准则, 若 \((\boldsymbol{x},t)_*\) 已满足要求, 则置 \((\boldsymbol{x},t)_0=(\boldsymbol{x},t)_*\), 并调整步长 \(\delta\), 否则缩小步长转预估步.
+  \item \textbf{调换步}. 如果 \((\boldsymbol{x},t)_*\) 的 \(t\) 分量等于 \(1\), 停止, 这时 \((\boldsymbol{x},t)_*\) 的 \(\boldsymbol{x}\) 分量是 \(f(\boldsymbol{x})=\boldsymbol{0}\) 的一个近似解. 若 \((\boldsymbol{x},t)_*\) 的 \(t\) 分量小于 \(1\), 转预估步.
+\end{enumerate}
+
+\subsection{切向量的计算方法}
