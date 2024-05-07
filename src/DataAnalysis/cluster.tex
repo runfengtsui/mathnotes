@@ -2,3 +2,28 @@
 \subsection{基本概念}
 \subsubsection{相似度或距离}
 \paragraph{Minkowski 距离}
+
+\begin{definition}[Minkowski distance]
+  给定样本集合 \(X\), \(X\) 是 \(m\) 维实数向量向量空间 \(\mathbb{R}^m\) 中点的集合, 其中 \(\boldsymbol{x}_i,\boldsymbol{x}_j\in X\), \(\boldsymbol{x}_i=\left(x_{1i}, x_{2i},\cdots,x_{mi}\right)^\mathrm{T}\), \(\boldsymbol{x}_j=\left(x_{1j}, x_{2j},\cdots, x_{mj}\right)^\mathrm{T}\), ,样本 \(\boldsymbol{x}_i\) 与样本 \(\boldsymbol{x}_j\) 的 Minkowski 距离定义为
+  \begin{equation}
+  d_{ij}=\left(\sum_{k=1}^{m} \left\lvert x_{ki}-x_{kj}\right\rvert^p\right)^{\frac{1}{p}},
+  \label{eq:minkowski_distance}
+  \end{equation}
+  这里 \(p\ge 1\).
+\end{definition}
+
+当 \(p=2\) 时称 \eqref{eq:minkowski_distance} 式为\textbf{欧式距离}(Euclidean distance), 即
+\begin{equation*}
+  d_{ij}=\left(\sum_{k=1}^{m} \left\lvert x_{ki}-x_{kj}\right\rvert^2\right)^{\frac{1}{2}}.
+\end{equation*}
+
+当 \(p=1\) 时称 \eqref{eq:minkowski_distance} 式为\textbf{Manhattan 距离}, 即
+\begin{equation*}
+  d_{ij}=\sum_{k=1}^{m} \left\lvert x_{ki}-x_{kj}\right\rvert.
+\end{equation*}
+
+当 \(p=\infty\) 时称 \eqref{eq:minkowski_distance} 式为\textbf{Chebyshev 距离}, 即
+\begin{equation*}
+  d_{ij}=\max_{k} \left\lvert x_{ki}-x_{kj}\right\rvert.
+\end{equation*}
+
