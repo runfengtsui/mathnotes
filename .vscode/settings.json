@@ -7,6 +7,10 @@
 
     // autobuild when file has changed
     "latex-workshop.latex.autoBuild.run": "onFileChange",
+    // viewer
+    "latex-workshop.view.pdf.viewer": "tab",
+    // view at the cursor
+    "latex-workshop.synctex.afterBuild.enabled": true,
     "latex-workshop.latex.outDir": "%DIR%/build",
     // if true, build latex project and synctex from cursor are showed in right clicked
     "latex-workshop.showContextMenu": false,
