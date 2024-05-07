@@ -76,24 +76,6 @@
   设 \(X\) 和 \(Y\) 是光滑流形, \(f:X\to Y\) 是光滑映射. 记 \(D\) 是 \(f\) 的临界点集, 则 \(f\) 的临界点集 \(f(D)\subset Y\) 在 \(Y\) 中的测度为零.
 \end{theorem}
 
-\subsection{连续同伦算法}
-
-\begin{definition}
-  设 \(X\) 与 \(Y\) 是拓扑空间, \(f_0,f_1:X\to Y\) 是连续映像. 记 \(I=[0,1]\). 若存在连续映像 \(H:X\times I\to Y\), 使得对一切 \(x\in X\) 成立 \(H(x,0)=f_0(x)\) 与 \(H(x,1)=f_1(x)\), 则称 \(f_0\) 同伦于 \(f_1\), 记为 \(f_0\simeq f_1:X\to Y\). 称映像 \(H\) 为从 \(f_0\) 到 \(f_1\) 的\textbf{同伦}或\textbf{伦移}, 记为 \(H:f_0\simeq f_1\) 或 \(f_0 \overset{H}{\simeq} f_1\). 若一个映像 \(f:X\to Y\) 同伦于常值映像, 就说 \(f\) 是一个\textbf{零伦}, 记为 \(f\simeq 0\).
-\end{definition}
-
-\begin{theorem}
-  记 \(C(X,Y)\) 是 \(X\) 到 \(Y\) 的一切连续映像之集合, 则同伦关系在 \(C(X,Y)\) 中是一种等价关系.
-\end{theorem}
-
-根据这一定理, 从 \(X\) 到 \(Y\) 的连续映像集合 \(C(X,Y)\) 按同伦关系可分成若干互不相交的等价类, 其中每一类成为一个\textbf{同伦类}.
-
-常见同伦:
-\begin{description}
-  \item[线性同伦] \(H(x,t)=tg(x)+(1-t)f(x)\);
-  \item[Newton 同伦] \(H(x,t)=\);
-\end{description}
-
 \subsubsection{Householder 变换}
 
 \begin{definition}
@@ -113,6 +95,24 @@ Householder 变换的性质:
   \item \(Q^2=I\), 即 \(Q\) 是对合的, 从而 \(Q^\mathrm{T}=Q\).
   \item Q 有一个 \(n-1\) 重特征值 \(1\) 和一个单重特征值 \(-1\), 从而有 \(\det Q=-1\).
 \end{itemize}
+
+\subsection{连续同伦算法}
+
+\begin{definition}
+  设 \(X\) 与 \(Y\) 是拓扑空间, \(f_0,f_1:X\to Y\) 是连续映像. 记 \(I=[0,1]\). 若存在连续映像 \(H:X\times I\to Y\), 使得对一切 \(x\in X\) 成立 \(H(x,0)=f_0(x)\) 与 \(H(x,1)=f_1(x)\), 则称 \(f_0\) 同伦于 \(f_1\), 记为 \(f_0\simeq f_1:X\to Y\). 称映像 \(H\) 为从 \(f_0\) 到 \(f_1\) 的\textbf{同伦}或\textbf{伦移}, 记为 \(H:f_0\simeq f_1\) 或 \(f_0 \overset{H}{\simeq} f_1\). 若一个映像 \(f:X\to Y\) 同伦于常值映像, 就说 \(f\) 是一个\textbf{零伦}, 记为 \(f\simeq 0\).
+\end{definition}
+
+\begin{theorem}
+  记 \(C(X,Y)\) 是 \(X\) 到 \(Y\) 的一切连续映像之集合, 则同伦关系在 \(C(X,Y)\) 中是一种等价关系.
+\end{theorem}
+
+根据这一定理, 从 \(X\) 到 \(Y\) 的连续映像集合 \(C(X,Y)\) 按同伦关系可分成若干互不相交的等价类, 其中每一类成为一个\textbf{同伦类}.
+
+常见同伦:
+\begin{description}
+  \item[线性同伦] \(H(x,t)=tg(x)+(1-t)f(x)\);
+  \item[Newton 同伦] \(H(x,t)=\);
+\end{description}
 
 \subsection{单个零点的同伦算法}
 
