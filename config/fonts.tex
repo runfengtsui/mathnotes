@@ -1,0 +1,27 @@
+\usepackage{fontspec}
+
+% 设置英文默认字体为 Times New Roman
+\setmainfont{Times New Roman}[
+  Extension = .ttf,
+  Path            = fonts/,
+  BoldFont        = Times New Roman - Bold,
+  ItalicFont      = Times New Roman - Italic,
+  BoldItalicFont  = Times New Roman - Bold Italic,
+]
+
+\usepackage{xeCJK}
+% 设置中文默认字体
+% 粗体设置成思源宋体 Bold, 斜体设置为思源宋体 Light
+\setCJKmainfont{SourceHanSerifSC-Regular}[
+  Extension       = .otf,
+  Path            = fonts/,
+  BoldFont        = SourceHanSerifSC-Bold,
+  ItalicFont      = SourceHanSerifSC-Light,
+  BoldItalicFont  = SourceHanSerifSC-SemiBold,
+]
+% 设置中文等宽字体
+\setCJKmonofont{SourceHanSerifSC-Regular}[
+  Extension   = .otf,
+  Path        = fonts/,
+]
+
